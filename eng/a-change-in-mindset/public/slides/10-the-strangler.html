@@ -1,0 +1,12 @@
+# The Strangler Pattern
+<aside class="notes">
+A big rewrite is seldom, if ever, the solution to anything.
+And, in hindsight, the preferable solution is as simple as it's elegant.
+
+Instead of the rewrite, we should have set up a router or load balancer, for example AWS own Application Load Balancer or Traefik.
+Our next step should have been to take the whole application, without making a single modification, and move it into a virtual machine in the cloud.
+
+After that, we'd be able to slice of layers of features one by one into serverless microservices or lambda functions, prioritized only
+by their business value and by what frequency they need to change. If we at any point would decide to abandon our decoupling initiative,
+we would be able to just leave it running without any additional cost or work needed.
+</aside>

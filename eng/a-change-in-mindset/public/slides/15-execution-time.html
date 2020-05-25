@@ -1,0 +1,19 @@
+## Execution Time
+
+<aside class="notes">
+At a conference a couple of years ago, I did a talk on azure functions.
+
+When it was time for the Q&A, one guy immediately raised his hand and explained that he was running a set, somewhere between 20 and 80, complex calculations in his application and that each of them could take up to 10 minutes. 
+He then continued to explain how he had tried azure functions, but been unsuccessful in getting his workloads to run with any degree of stability or reliability. Some times the functions just timed out.
+He wanted to know whether I had any suggestions as to how he would get his workload to run as functions.
+
+This might come as a disappointment to some of you, but I really dont have any good solution for that.
+I'd even go as far as to say that then, going for functions is probably not for you.
+
+Functions are supposed to be ephemereal. Most cloud providers even insist that no function should ever have an execution time above a couple of minutes.
+I don't really know about azure or GCP on this one, but AWS for instance actually *kills* your lambda instance after 300 seconds.
+
+If your workload is anything like this guys, I'd suggest that you opt either for running your workloads as a microservice, or maybe even as a serverless app.
+Azure App Service, Google App Engine, Heroku or AWS Fargate are all great examples of this.
+
+</aside>

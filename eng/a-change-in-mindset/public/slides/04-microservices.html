@@ -1,0 +1,25 @@
+<aside class="notes">
+As a reaction to this, among other things, the idea of microservices was born.
+
+In contrast to the monolith, microservices are fine-grained, loosely coupled services organized around
+business capabilities. Microservices communicate through simple light-weight protocols such as HTTP,
+messages or events. Because of this, the microservice architecture doesn't impose any alignment between
+services in terms of programming languages, peripheral software or hardware. 
+
+For many of us, that felt as quite an improvement over the monolithic approach. Suddenly, we were able to
+deploy independently, choose the language best suited to solve a problem or for that matter fully replace
+parts of the solution without interfering with the oepration of anything else, as long as our public
+interface or API remained intact.
+ 
+Some of you, who have been around for a while, might still ask yourself what the difference is compared
+to service-oriented architecture (SOA). There are two quite significant differences:
+
+The first one is that the microservice architecture compared to SoA usually dont have a common application
+or application service layer, but rather let each service or api keep their own isolated runtime context,
+usually in some kind of container.
+
+The second one, which I think most who've ever worked with SoA might agree with me on, is that it - luckily
+enough - usually lacks any ESB. The ESB, or enterprise service bus, in SoA sort of served as a patch panel
+between all our services, moving our tangled point to point dependencies into a black box where it no longer
+was an eyesore for anyone looking at our solution from a holistic perspective.
+</aside>

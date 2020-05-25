@@ -1,0 +1,31 @@
+
+## Coupling
+* Orchestration <!-- .element: class="fragment"-->
+* Performance <!-- .element: class="fragment"-->
+* Request-level coupling <!-- .element: class="fragment"-->
+
+<aside class="notes">
+Oh boy, oh boy, oh boy.
+
+This one has bitten me in the hiney more than once.
+
+Composing services out of services, or services out of functions is sooo appealing at a glance.
+For example, our purchase order lambda and our price calculation lambda really would make a great shopping microservice.
+
+So, why is this such a bad idea?
+
+For starters, the orchestration of such a solution quickly becomes really tedious.
+
+Say for example that the order service, for each item in the order, should query the pricing service on the price.
+How would this be done? One item at a time? All at once? How about if you also want to ask the address service about
+where the items are to be shipped? And then want the pricing service to calculate the cost of shipping?
+Would we then also need to ask the product service about the weight and dimensions of each item?
+
+This usually also comes hand in hand with bad performance. The overhead of all the communication between the services
+quickly becomes painful. We will also have to keep the client connected to our composite service or aggregator to be able
+to return something useful to the user, which in turn might have a negative impact on our potential concurrency.
+
+We also create a tight request-level coupling between the services as a change to any of the services our aggregate
+depends on would result in the aggregate breaking.
+
+</aside>

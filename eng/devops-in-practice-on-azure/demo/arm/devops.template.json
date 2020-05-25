@@ -1,0 +1,112 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/Microsoft.Resources.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location":        { "type": "string" },
+        "storageAccount":  { "type": "object" },
+        "project":         { "type": "object" },
+        "insights":        { "type": "object" },
+        "function":        { "type": "object" }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2018-07-01",
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[parameters('storageAccount').name]",
+            "location": "[parameters('location')]",
+            "sku": "[parameters('storageAccount').sku]",
+            "kind": "[parameters('storageAccount').kind]"
+        },
+        {
+            "apiVersion": "2014-02-26",
+            "type": "microsoft.visualstudio/account",
+            "name": "[parameters('project').accountName]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "operationType": "[parameters('project').accountOperationType]",
+                "accountName": "[parameters('project').accountName]"
+            },
+            "resources": [
+                {
+                    "apiVersion": "2014-02-26",
+                    "type": "project",
+                    "name": "[parameters('project').projectName]",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [
+                        "[concat('microsoft.visualstudio/account/', parameters('project').accountName)]"
+                    ],
+                    "properties": {
+                        "ProcessTemplateId": "[parameters('project').processTemplateId]",
+                        "VersionControlOption": "[parameters('project').versionControlOption]"
+                    }
+                }
+            ]
+        },
+        {
+            "apiVersion": "2015-05-01",
+            "type": "Microsoft.Insights/components",
+            "name": "[parameters('insights').name]",
+            "location": "[parameters('location')]",
+            "kind": "web",
+            "properties": {
+                "Application_Type": "web",
+                "ApplicationId": "[parameters('function').name]"
+            }
+        },
+        {
+            "apiVersion": "2015-08-01",
+            "type": "Microsoft.Web/sites",
+            "name": "[parameters('function').name]",
+            "location": "[parameters('location')]",
+            "kind": "functionapp,linux",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccount').name)]",
+                "[resourceId('Microsoft.Insights/components', parameters('insights').name)]"
+            ],
+            "resources": [
+                {
+                    "apiVersion": "2015-08-01",
+                    "name": "web",
+                    "type": "sourcecontrols",
+                    "dependsOn": [
+                      "[resourceId('Microsoft.Web/sites/', parameters('function').name)]"
+                    ],
+                    "properties": {
+                      "RepoUrl": "[concat('https://dev.azure.com/', parameters('project').accountName, '/_git/', parameters('project').projectName)]",
+                      "branch": "master",
+                      "IsManualIntegration": false
+                    }
+               }
+            ],
+            "properties": {
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+                            "value": "[reference(resourceId('microsoft.insights/components/', parameters('insights').name), '2015-05-01').InstrumentationKey]"
+                        },
+                        {
+                            "name": "FUNCTIONS_WORKER_RUNTIME",
+                            "value": "node"
+                        },
+                        {
+                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                            "value": "[parameters('function').nodeVersion]"
+                        },
+                        {
+                            "name": "FUNCTIONS_EXTENSION_VERSION",
+                            "value": "[parameters('function').extensionVersion]"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "project": {
+            "type": "object",
+            "value": "[reference(resourceId('microsoft.visualstudio/account/project/', parameters('project').accountName, parameters('project').projectName), '2014-02-26')]"
+        }
+    }
+  }

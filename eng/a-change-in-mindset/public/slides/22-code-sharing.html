@@ -1,0 +1,24 @@
+# Code Sharing
+
+* Avoid libraries and code sharing between services as far as possible
+
+<aside class="notes">
+This is quite a difficult topic.
+
+Most of us have been taught all through our studies and for the entirety of our time as professionals that code should be
+kept DRY and that we should avoid duplication, almost to any cost.
+
+For microservices, lambdas and serverless computing in general, I'd argue that it's quite different.
+Code duplication is in many contexts, probably most, preferrable to introducing common libraries.
+
+Why? Cause it introduces unnecessary coupling and dependencies. A change to the HTTP Request handling library suddenly
+cascades through all our HTTP-enabled services, even though only one of them might be driving the need for that change.
+
+You should of course still try to keep the code DRY inside your specific service, mind you, but across services?
+That's a recipe for unnecessary downtime, deployment durations, and service quality degradation.
+
+Looking back at scaling and concurrency, how on earth would we scale something that is shared between multiple services
+through tight coupling? That would force us to scale each function or service, regardless of whether the rest of the
+service would benefit from it.
+
+</aside>

@@ -1,0 +1,16 @@
+## Concurrency
+
+<aside class="notes">
+If we look at the top three cloud providers, Azure, GCP and AWS, they all have limits on the concurrency of functions, which might be an issue depending on your use case.
+Azure Functions have a limit of 200 instances per function, although each function may process more than one message or request at a time.
+
+Google Cloud Functions have a hard limit of 1,000 functions per project and 100,000,000 function invocations per 100 seconds (~1,000,000 per second on avg) per region.
+
+AWS have a limit of 1,000 concurrent lambda invocations per region, although this limit is increasable by contacting support.
+To what amount, I don't know. Ask Zoran if he knows if he's there.
+
+Usually, this is not a problem though. For most workloads, it's unlikely that you'll have more than a 1000 concurrent requests.
+With that said, analyze your workload before moving forward and also assess your need for heavy concurrency.
+
+If you suspect that this limit might become an issue for you, just move your workload to a microservice running in a managed container or pod of some kind.
+</aside>

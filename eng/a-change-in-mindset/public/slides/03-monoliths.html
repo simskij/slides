@@ -1,0 +1,15 @@
+
+
+<aside class="notes">
+This is probably one of the most common approaches to software architecture ever.
+
+The basic idea behind the monolith is that we take all our code and all our data and compile it as one inseparable unit.
+
+It's convenient, easy and requires little to no work. But as your project grows, some issues start to surface;
+
+* Maybe you'd like to be able to deliver just a subset of your project as an application, containing only the parts your user is interested in. How do we accomplish that? It's still possible, but might require a lot of changes to the existing code.
+
+* Suddenly, we might even have multiple teams working on the same product. Either these teams need to have clear, siloed responsibilities or you'll find yourself in the front of a release-train, trying to integrate all changes into a working release candidate.
+
+* You've changed one method in the authentication service? I'm sorry, but unless you've implemented some kind of nifty plugin architecture or similar, you'll just have to suck it up and redeploy the project in its entirety.
+</aside>

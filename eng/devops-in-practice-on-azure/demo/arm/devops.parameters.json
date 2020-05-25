@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "West Europe"
+        },
+        "storageAccount": {
+            "value": {
+                "name": "gabstorageaccount",
+                "kind": "StorageV2",
+                "sku": {
+                    "name": "Standard_LRS",
+                    "tier": "Standard"
+                }
+            }
+        },
+        "project": {
+            "value": {
+                "projectName": "gabdevopsproject",
+                "accountName": "gabdevopsaccount",
+                "accountOperationType": "Create",
+                "versionControlOption": "git",
+                "processTemplateId": "6B724908-EF14-45CF-84F8-768B5384DA45"
+            }
+        },
+        "insights": {
+            "value": {
+                "name": "gabinsights"
+            }
+        },
+        "function": {
+            "value": {
+                "name": "gabfunction",
+                "nodeVersion": "10.14.1",
+                "extensionVersion": "~2"
+            }
+        }
+    }
+}

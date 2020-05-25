@@ -1,0 +1,92 @@
+{
+  "zmarta": {
+    "current": 0,
+    "questions": [
+      { "title" : "Are you psyched?",
+        "alternatives" : [
+          "🤘Totally!",
+          "🤘Totally!",
+          "🤘Totally!"
+        ]},
+      { "title" : "Our deployment processes are...",
+        "alternatives" : [
+          "😔 Manual",
+          "😅 Partially automated",
+          "🥳 Fully automated"
+        ]},
+      { "title" : "Our test processes are...",
+        "alternatives" : [
+          "😔 Manual",
+          "😅 Partially Automated",
+          "🥳 Fully automated"
+        ]},
+      { "title" : "Our continuous delivery processes are...",
+        "alternatives" : [
+          "😔 Non-existant",
+          "😅 Partially Implemented",
+          "🥳 Fully Implemented"
+        ]},
+      { "title" : "The products we build are",
+        "alternatives" : [
+          "😔 Non-resilient",
+          "😅 Tolerant to failure",
+          "🥳 Self healing"
+        ]},
+      {
+        "title" : "After releasing, we gather customer feedback",
+        "alternatives" : [
+          "😔 Never",
+          "😅 Sometimes",
+          "🥳 Always"
+        ]},
+      {
+        "title" : "Our change approval processes are",
+        "alternatives" : [
+          "😔 Rigid",
+          "😅 Lightweight",
+          "🥳 Non-existent"
+        ]},
+      {
+        "title" : "Our release/deploy frequency is",
+        "alternatives" : [
+          "😔 Monthly or longer",
+          "😅 Weekly",
+          "🥳 Daily or shorter"
+        ]},
+      {
+        "title" : "Our product teams are able to build it & run it by themselves",
+        "alternatives" : [
+          "😔 Not at all",
+          "😅 With help from Ops",
+          "🥳 Fully"
+        ]},
+      {
+        "title" : "We dedicate time and resources to experimenting",
+        "alternatives" : [
+          "😔 Never",
+          "😅 Irregularly",
+          "🥳 Regularly"
+        ]},
+      {
+        "title" : "Our architecture is mainly",
+        "alternatives" : [
+          "😔 Monolithic",
+          "😅 Hybrid",
+          "🥳 Loosely Coupled"
+        ]}
+    ],
+    "answers": [
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 },
+      { "init": -1 }
+    ]
+  }
+}

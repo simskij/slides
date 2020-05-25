@@ -1,0 +1,12 @@
+# Bounding Contexts
+
+<aside class="notes">
+So instead, to avoid this, we utilize a core concept from DDD called bounded context.
+If we find ourself in a situation where we need to share business logic between services,
+then we most likely either made a faulty design decision when we decided the boundary,
+or bounded context, of the services or simply need another service.
+
+Looking back at the silos, it's perfectly fine to actually build common services, utilized
+in multiple workflows through messaging or event triggers, as long as we do it in a asynchronous,
+decoupled fashion.
+</aside>
