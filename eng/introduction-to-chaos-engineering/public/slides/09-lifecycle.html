@@ -1,0 +1,70 @@
+
+<img src="/public/process.png" />
+
+<aside class="notes">
+  So how do we go about actually performing chaos engineering?
+  The process is quite simple and consists of five different steps.
+
+  #### Steady State
+
+  First we need to define the steady state, as in:
+  how do our systems behave under normal circumstances? this could be things like
+  number of instances of a replicated service, cpu and memory usage, concurrency limits
+  or whatever else you can think of that will let you know that conditions are stable.
+
+  #### Build a hypothesis
+
+  Next, we need to formulate a hypothesis that we may use to determine if our chaos
+  experiment was a success or a failure. Using the hypothesis, we will later be able
+  to draw conclusions from the actual outcome. 
+  
+  The hypothesis we build should be written in such a way that they build upon the
+  expection of a positive outcome. A hypothesis that expects the outcome of an experiment
+  to be a failure should be a prompt to take additional actions to strengthen our systems
+  resilience before we actively try to break it.
+
+  In short; our hypothesis should be formulated to confirm the reliability of our systems
+  rather than proving that they're already broken.
+
+  As an example:
+  
+  > If one of the containers responding to user API requests fail, the performance of
+  > our systems will not be degraded by more than 10%
+
+  is a more reasonable hypothesis than:
+
+  > If the container responding to user API requests fail, our system will be unavailable
+  > until a new one is in place.
+
+  #### Design an experiment
+
+  Once we have our hypothesis down, we need to design an actual experiment that simulates
+  the circumstances our hypothesis describes. If we use the positive hypothesis example,
+  this would mean that we need to inject chaos into our cluster, causing one of our API
+  containers to fail, or terminate.
+  
+  #### Measure the outcome
+  
+  While our systems are affected by the failure, we also want to probe them to make sure
+  our hypothesis holds true. For our API example, this would mean exposing the system to
+  traffic similar to what we have in production, and making sure degradation, in terms of
+  latency or request failures, indeed stays below 10%. For other scenarios or hypotheses
+  it might make more sense to probe for error rates in system logs, measure resource consumption
+  or check for data corruption.
+  
+  If our system at any point drifts away from the steady state , we immediately
+  terminate the experiment and let the systems recover, either automatically or by performing
+  rollback actions.
+
+  The harder it is for us to make our system drift away from the steady state, the more
+  confidence we get about our system reliability. 
+  
+  #### Fix issues
+
+  Now that we've built our hypothesis, designed an experiment and measured the outcome of it,
+  we need to make sure we address any issues we might have identified. Until this is done, there
+  really are no reasons to run the experiment again as we already know that it's broken.
+
+  Once we believe that we've further strengthened the reliability of our system, we just
+  repeat the process.  
+</aside>
