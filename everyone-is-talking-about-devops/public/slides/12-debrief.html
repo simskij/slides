@@ -1,0 +1,41 @@
+Debrief
+
+<ul style="font-size:.5em; list-style: none; text-align:center;">
+  <li class="fragment">How long did it take for the error to be detected?</li>
+  <li class="fragment">How long did it take until the system recovered?</li>
+  <li class="fragment">Did it affect any users?</li>
+  <li class="fragment">Did the recovery require manual intervention?</li>
+  <li class="fragment">How can we improve our monitoring and documentation?</li>
+</ul>
+
+<aside class="notes">
+  Depending on the size and scope, it's not uncommon to feel fatigued after an experiment.
+  Take a short walk, grab some fresh coffee or call your kids, cause we're not entirely done yet.
+
+  Cause once the experiment is over, it's time to do a debrief, as part of measuring the outcome.
+  This is, right after planning, one of the most important activities of the entire exercise,
+  so make sure everyone that was part of the experiment participates on this as well. 
+
+  I've shamelessly borrowed some kind of questionnaire from the Slack team that really resonates
+  with me:
+
+    - How long did it take for the error to be detected?
+      Is that good enough? Can we speed this up somehow?
+
+    - How long did it take until the system recovered?
+      Same here. If it takes five minutes for a web server to recover after a failure has been
+      detected, it's likely not good enough.
+
+    - Did it affect any users?
+      Depending on the answer to the previous question, this will more or less likely be the case.
+      In what way and how can we be sure? Is there anything we can do make a 'yes' a 'no'?
+
+    - Did the recovery require manual intervention?
+      If so, be sure to document exactly what was done, when and why. Before running the
+      experiment again, we should likely investigate whether these can be automated instead, and
+      if not, make sure steps are documented and made available to the on-call team.
+    
+    - How can we improve our monitoring and documentation?
+      Was the error visible in the monitoring? Is it described thoroughly in the documentation?
+      What steps can we take to improve this? 
+</aside>

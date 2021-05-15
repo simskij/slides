@@ -2,8 +2,15 @@
 <img src="/public/process.png" />
 
 <aside class="notes">
-  So how do we go about actually performing chaos engineering?
-  The process is quite simple and consists of five different steps.
+  So how do we go about actually performing chaos engineering? The process is quite simple and 
+  consists of five-ish different steps.
+
+  There is a pattern to these steps. The first three, are all about planning. This is probably
+  where most of your time will be spent. The more detailed and thought-through your plans are,
+  the more likely you are to uncover something of value, and to not have the errors cascade to
+  your users.  Poor planning will lead to a lot of manual work and little to no valuable insights except
+  "we should have planned more".
+  
 
   #### Steady State
 
@@ -44,6 +51,10 @@
   containers to fail, or terminate.
   
   #### Measure the outcome
+
+  The execution is the smallest part of the lifecycle, we run the experiment and measure the 
+  outcome. Before we start the experiment however, we need to make sure that everyone concerned in
+  the organization has been informed about the experiment.
   
   While our systems are affected by the failure, we also want to probe them to make sure
   our hypothesis holds true. For our API example, this would mean exposing the system to
@@ -67,4 +78,7 @@
 
   Once we believe that we've further strengthened the reliability of our system, we just
   repeat the process.  
+
+  ## Planning, Execution, Debrief 
+
 </aside>
